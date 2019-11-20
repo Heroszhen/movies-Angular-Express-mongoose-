@@ -1,0 +1,15 @@
+<div id="movies">
+    <div *ngFor="let item of allmovies" class="onemovie">
+        <div class="row">
+            <div class="col-md-4">
+                <img [src]="item.image">
+            </div>
+            <div class="col-md-8">
+                <h2 [routerLink]="['/unfilm', item._id]" class="mb-5">{{item.title}}</h2>
+                <div class="mb-5">{{item.last}} minutes</div>
+                <div class="mb-5">{{item.starring}}</div>
+                <div class="mb-5">{{item.plot}}</div>
+            </div>
+        </div>
+    </div>
+</div>
