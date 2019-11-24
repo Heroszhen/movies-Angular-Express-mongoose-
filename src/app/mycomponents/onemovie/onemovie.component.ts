@@ -13,6 +13,7 @@ export class OnemovieComponent implements OnInit {
   onemovie:any = "";
   comments:any;
   commentModel = new Comment("","","");
+  inputsearch = "";
   constructor(private myapi:MyapiService,private route:ActivatedRoute) {
     this.route.params.subscribe( params =>{
       this.id = params.id;
