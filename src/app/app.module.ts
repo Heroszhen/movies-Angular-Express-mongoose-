@@ -9,12 +9,16 @@ import { FormsModule } from '@angular/forms';
 
 import { MoviesComponent } from './mycomponents/movies/movies.component';
 import { OnemovieComponent } from './mycomponents/onemovie/onemovie.component';
+import { SearchmoviesComponent } from './mycomponents/searchmovies/searchmovies.component';
+import { UploadimageComponent } from './mycomponents/uploadimage/uploadimage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
-    OnemovieComponent
+    OnemovieComponent,
+    SearchmoviesComponent,
+    UploadimageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,30 @@
+<div id="searchmovies">
+    <div class="search">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 searchfield">
+                    <div>
+                        <input type="text" id="inp-query" name="search_text" size="22" maxlength="60" placeholder="titre , acteur" value="" autocomplete="off" [(ngModel)]="inputsearch">
+                        <input type="submit" (click)="serchmovies()" value="Rechercher">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="container">
+        <div class="row">
+            <section *ngFor="let item of movies" class="col-md-6 col-lg-4 d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <img [src]="item.image" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.title}}</h5>
+                        <p class="card-text">
+                            {{item.plot|slice:0:100}}
+                        </p>
+                        <a [routerLink]="['/unfilm', item._id]" href="#" class="btn btn-primary">Voir</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,20 @@
+<div id="uploadimage">
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-12">
+                <form (ngSubmit)="addOnePhoto()">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="custom-file mb-2">
+                                <label class="custom-file-label" for="customFile">Choisir une image</label>
+                                <input type="file" class="custom-file-input" id="customFile" (change)="handleFileInput($event.target.files)">
+                            </div>    
+                        </div>
+                        <div class="col-12 text-success">{{filetouploadname}}</div>
+                    </div>
+                    <button  type="submit" class="btn btn-primary btn-sm">Ajouter une image</button>      
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

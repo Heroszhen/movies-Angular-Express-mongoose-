@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyapiService } from '../../services/myapi.service';
-import { ActivatedRoute } from '@angular/router';
-import { Comment } from '../../myclasses/Comment';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Comment } from '../../myclasses/comment';
 
 @Component({
   selector: 'app-onemovie',
@@ -14,7 +14,8 @@ export class OnemovieComponent implements OnInit {
   comments:any;
   commentModel = new Comment("","","");
   inputsearch = "";
-  constructor(private myapi:MyapiService,private route:ActivatedRoute) {
+  constructor(private myapi:MyapiService,private route:ActivatedRoute,private router:Router) {
+    this.myapi.search$.next([]);
     this.route.params.subscribe( params =>{
       this.id = params.id;
       this.commentModel.idmovie = params.id;
@@ -31,5 +32,10 @@ export class OnemovieComponent implements OnInit {
       this.comments=data;
       this.commentModel.reset();
     });
+  }
+
+  serchmovies(){
+    this.myapi.search$.next([this.inputsearch]);
+    this.router.navigate(['/chercherfilms']);
   }
 }

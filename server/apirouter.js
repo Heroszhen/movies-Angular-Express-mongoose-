@@ -3,6 +3,16 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const bodyparser = require("body-parser");
+const multer  = require('multer');
+const upload = multer({ dest: 'images' });/*
+const storage = multer.diskStorage({
+    destination:(req,file,cb)=>{
+
+    },
+    filename:(req,file,cb)=>{
+        cb(null,Date.now()+'-'+file.originalname)
+    }
+});*/
 const moviemodel = require("./moviemodel").model;
 const commentmodel = require("./commentmodel").model;
 
@@ -57,6 +67,15 @@ router.route("/comment")
         });
     });
 
+router.route("/searchmovies")
+    .post(function(req,res){
+        var keywords = req.body.keywords;
+        moviemodel.find({$or:[{"title":{$regex:'.*'+keywords+'.*'}},{"starring":{$regex:'.*'+keywords+'.*'}}]},function(err,docs){
+            res.send(docs);
+        });
+        
+    });
+
 router.route("/comments/idmovie/:id")
     .get(function(req,res){
         var params = req.params;
@@ -64,6 +83,11 @@ router.route("/comments/idmovie/:id")
         commentmodel.find({"idmovie":id},function(err,docs){
             res.send(docs);
         });
+    });
+
+router.post("/myimage",upload.single('recfile'),function(req,res,next){
+        console.log(req.file);
+        res.send({"response":"ok"});
     });
 
 exports.router = router;
