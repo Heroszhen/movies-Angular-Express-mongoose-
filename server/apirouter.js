@@ -85,6 +85,38 @@ router.route("/comments/idmovie/:id")
         });
     });
 
+router.route("/addmovie")
+    .post(function(req,res){
+        var movie = req.body;
+        moviemodel.create({
+            title:movie.filmtitle,
+            last:movie.filmlast,
+            plot:movie.filmplot,
+            starring:movie.filmstarring,
+            image:movie.filmimage
+        },function(err){
+            if(err)console.log(err);
+            else{
+                moviemodel.find({},function(err,docs){
+                    res.send(docs);
+                });
+            }
+        });
+    });    
+
+router.route("/deletemovie/:id")
+    .delete(function(req, res){
+        var id = req.params.id;
+        moviemodel.deleteOne({ _id: id }, function (err) {
+            if(err)console.log(err);
+            else{
+                moviemodel.find({},function(err,docs){
+                    res.send(docs);
+                });
+            }
+        });
+    });
+
 router.post("/myimage",upload.single('recfile'),function(req,res,next){
         console.log(req.file);
         res.send({"response":"ok"});

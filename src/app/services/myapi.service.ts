@@ -29,4 +29,12 @@ export class MyapiService {
   postData3(form){
     return this.http.post("http://localhost:3000/api/myimage",form);
   }
+  
+  postData4(film){
+    return this.http.post("http://localhost:3000/api/addmovie",film);
+  }
+
+  deletData(id){
+    return this.http.delete("http://localhost:3000/api/deletemovie/"+id);
+  }
 }

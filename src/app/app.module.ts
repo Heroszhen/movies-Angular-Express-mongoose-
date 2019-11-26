@@ -5,12 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
 import { MoviesComponent } from './mycomponents/movies/movies.component';
 import { OnemovieComponent } from './mycomponents/onemovie/onemovie.component';
 import { SearchmoviesComponent } from './mycomponents/searchmovies/searchmovies.component';
 import { UploadimageComponent } from './mycomponents/uploadimage/uploadimage.component';
+import { AddfilmComponent } from './mycomponents/addfilm/addfilm.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,15 @@ import { UploadimageComponent } from './mycomponents/uploadimage/uploadimage.com
     MoviesComponent,
     OnemovieComponent,
     SearchmoviesComponent,
-    UploadimageComponent
+    UploadimageComponent,
+    AddfilmComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,64 @@
+<div id="addfilm">
+    <div class="container pt-3">
+        <div class="row">
+            <h2 class="col-12 text-center text-primary">Ajouter un film</h2>
+            <div class="col-12 pt-2">
+                <form class="row" [formGroup]="filmForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group col-md-6">
+                        <label for="title">Titre</label>
+                        <input type="text" class="form-control" id="title" name="title" formControlName="filmtitle"  #filmtitle="" required placeholder="Entrer titre">   <small  [class.d-none]="filmForm.get('filmtitle').valid || filmForm.get('filmtitle').untouched" class="text-danger">Le champs est obligatoire</small>    
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="last">Durée</label>
+                        <input type="number" class="form-control" id="last" name="last" formControlName="filmlast"  #filmlast=""  required placeholder="Entrer durée"> 
+                        <small  [class.d-none]="filmForm.get('filmlast').valid || filmForm.get('filmlast').untouched" class="text-danger">
+                            Le champs est obligatoire<br>
+                            La valeur doit être supérieure à 60
+                        </small> 
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="starring">Acteurs</label>
+                        <input type="text" class="form-control" id="starring" name="starring" formControlName="filmstarring"  #filmstarring="" required placeholder="Entrer acteurs">
+                        <small  [class.d-none]="filmForm.get('filmstarring').valid || filmForm.get('filmstarring').untouched" class="text-danger">Le champs est obligatoire</small>       
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="image">Image</label>
+                        <input type="text" class="form-control" id="image" name="image" formControlName="filmimage"  #filmimage="" required placeholder="Entrer url">     <small  [class.d-none]="filmForm.get('filmimage').valid || filmForm.get('filmimage').untouched" class="text-danger">Le champs est obligatoire</small>  
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="plot">Résumé</label>
+                        <textarea class="form-control" id="plot" name="plot" rows="3" formControlName="filmplot"  #filmplot="" required placeholder="Entrer résumé"></textarea>
+                        <small  [class.d-none]="filmForm.get('filmplot').valid || filmForm.get('filmplot').untouched" class="text-danger">
+                            Le champs est obligatoire<br>
+                            Il faut au moins 20 caractères
+                        </small>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary" [disabled]="!filmForm.valid">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div *ngFor="let item of movies" class="col-12 mb-3">
+                <div class="onemovie">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img [src]="item.image" alt="">
+                        </div>
+                        <div class="col-md-7">
+                            <h5>{{item.title}}</h5>
+                            <div>{{item.last}} minute</div>
+                            <div>{{item.starring}}</div>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-success">Modifier</button>
+                            <br><br>
+                            <button class="btn btn-danger" (click)="deleteOneMovie(item._id)">supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
